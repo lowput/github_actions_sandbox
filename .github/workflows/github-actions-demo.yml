@@ -9,5 +9,6 @@ jobs:
       - name: Check out repository code
         uses: actions/checkout@v4
       - run: echo "Repository ${{ github.repository }}"
-      - run: git log --oneline -1
+      - name: Git Recent Commit History
+        run: git log --oneline -5
 
