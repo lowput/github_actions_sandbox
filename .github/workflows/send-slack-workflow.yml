@@ -13,4 +13,4 @@ jobs:
         if: ${{ success() }}
         env:
           SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "Githug Action Slack通知テスト"
+          SLACK_MESSAGE: "GitHub Actions Slack通知テスト"
