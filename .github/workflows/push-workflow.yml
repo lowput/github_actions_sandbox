@@ -9,3 +9,4 @@ jobs:
     steps:
       - run: |
           echo "github.sha: ${{ github.sha }}"
+      - run: git log --oneline -5
