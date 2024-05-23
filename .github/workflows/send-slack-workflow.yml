@@ -3,13 +3,20 @@ name: Send slack message
 on:
   workflow_dispatch:
 
-env:
-  PULL_REQUEST_HEAD: ${{ github.sha }}
-
 jobs:
-  manual-job:
+  manualjob:
     runs-on: ubuntu-latest
+    outputs:
+      hash: ${{ steps.head.outputs.hash }}
     steps:
       - uses: actions/checkout@v4
-        with:
-          ref: ${{ env.PULL_REQUEST_HEAD }}
+      - id: head
+        run: echo "hash=$(git rev-parse HEAD)" >> $GITHUB_OUTPUT
+  check_commit_hash:
+    needs: manualjob
+    runs-on: ubuntu-latest
+    if: ${{ github.sha == needs.manualjob.outputs.hash }}
+    steps:
+      - run: |
+          echo "hash ok ${{ needs.manualjob.outputs.hash }}"
+          echo "github sha ${{ github.sha }}"
