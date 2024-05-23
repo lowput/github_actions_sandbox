@@ -12,5 +12,5 @@ jobs:
           echo "github.event.pull_request.head.sha: ${{ github.event.pull_request.head.sha }}"
       - name: Check out repository
         uses: actions/checkout@v4
-      - run: git log --oneline -5
+      - run: git log --oneline -6
   
