@@ -3,14 +3,13 @@ name: Send slack message
 on:
   workflow_dispatch:
 
+env:
+  PULL_REQUEST_HEAD: ${{ github.sha }}
+
 jobs:
   manual-job:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v2
-      - name: Slack Notification
-        uses: rtCamp/action-slack-notify@v2
-        if: ${{ success() }}
-        env:
-          SLACK_WEBHOOK: ${{ secrets.SLACK_WEBHOOK }}
-          SLACK_MESSAGE: "GitHub Actions Slack通知テスト"
+      - uses: actions/checkout@v4
+        with:
+          ref: ${{ env.PULL_REQUEST_HEAD }}
