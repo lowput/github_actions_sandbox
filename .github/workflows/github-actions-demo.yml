@@ -15,4 +15,3 @@ jobs:
         uses: actions/checkout@v4
       - name: Git Recent Commit History
         run: git log --oneline -5
-
