@@ -1,7 +1,9 @@
 name: Push Actions
 
 on:
-  push
+  push:
+    branches:
+      - 'releases/**'
 
 jobs:
   pull_request_job:
