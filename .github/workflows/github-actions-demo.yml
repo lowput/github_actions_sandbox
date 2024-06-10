@@ -15,3 +15,8 @@ jobs:
         uses: actions/checkout@v4
       - name: Git Recent Commit History
         run: git log --oneline -5
+      - name: this workflow url
+        run: |
+          WORKFLOW_URL="https://github.com/${{ github.repository }}/actions/runs/${{ github.run_id }}"
+          echo $WORKFLOW_URL
+
