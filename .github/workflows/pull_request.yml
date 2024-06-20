@@ -1,7 +1,10 @@
-name: GitHub Actions
+name: PR and workflow_dispatch
 
 on:
+  workflow_dispatch:
   pull_request:
+      branches:
+        - main
 
 jobs:
   pull_request_job:
