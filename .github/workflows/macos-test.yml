@@ -1,0 +1,14 @@
+name: Manual Workflow
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manual-job:
+    runs-on: macos-14
+    steps:
+      - run: echo "Manual Workflow"
+      - name: Check out repository
+        uses: actions/checkout@v4
+      - name: uname -a
+        run: uname -a
