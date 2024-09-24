@@ -29,6 +29,7 @@ jobs:
         if: github.event.inputs.artifact-action == 'download'
         with:
           name: test-01
-      - name: donwload check
+      - if: github.event.inputs.artifact-action == 'download'
+        name: donwload check
         run: |
-          echo tmp/test.txt
+          cat tmp/test.txt
