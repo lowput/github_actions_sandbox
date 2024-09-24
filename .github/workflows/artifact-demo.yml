@@ -1,0 +1,15 @@
+name: artifact demo
+
+on: [push]
+
+jobs:
+  artifact-demo:
+    runs-on: ubuntu-24.04
+    steps:
+      - run: |
+          mkdir tmp/
+          echo hello > tmp/test.txt
+      - uses: actions/upload-artifact@v4
+        with:
+          path: tmp/test.txt
+          name: test-01
