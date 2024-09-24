@@ -1,15 +1,34 @@
 name: artifact demo
 
-on: [push]
+on:
+  workflow_dispatch:
+    inputs:
+      artifact-action:
+        required: true
+        type: choice
+        default: ''
+        options:
+          - upload
+          - download
+
 
 jobs:
   artifact-demo:
     runs-on: ubuntu-24.04
     steps:
-      - run: |
+      - if: github.event.inputs.artifact-action == 'upload'
+        run: |
           mkdir tmp/
           echo hello > tmp/test.txt
       - uses: actions/upload-artifact@v4
+        if: github.event.inputs.artifact-action == 'upload'
         with:
           path: tmp/test.txt
           name: test-01
+      - uses: actions/download-artifact@v4
+        if: github.event.inputs.artifact-action == 'download'
+        with:
+          name: test-01
+      - name: donwload check
+        run: |
+          echo tmp/test.txt
