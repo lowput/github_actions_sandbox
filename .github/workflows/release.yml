@@ -1,0 +1,24 @@
+name: workflow dispatch
+
+on:
+  workflow_dispatch:
+
+jobs:
+  manualjob:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+      - name: Release
+        uses: octokit/request-action@v2.x
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          route: POST /repos/{repo}/releases
+          repo: ${{ github.repository }}
+          tag_name: test-${{ github.run_id }}
+          target_commitish: ${{ github.ref }}
+          name: test-${{ github.run_id }}
+          body: 'body text!!'
+          generate_release_notes: true
