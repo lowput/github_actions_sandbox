@@ -1,1 +1,6 @@
-
+name-template: 'v$RESOLVED_VERSION 🌈'
+tag-template: 'v$RESOLVED_VERSION'
+categories: []
+change-template: '$TITLE (#$NUMBER) by @$AUTHOR'
+template: |
+  $CHANGES
