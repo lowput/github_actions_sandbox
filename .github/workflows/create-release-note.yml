@@ -1,0 +1,17 @@
+name: Create Release Note
+
+on:
+  workflow_dispatch:
+
+jobs:
+  create_release_note:
+    runs-on: ubuntu-latest
+    permissions:
+      id-token: write
+      contents: read
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+      - name: gh release create
+        run: |
+          gh release create v20241021-test-2 -n "リリースノート・本文テスト"
